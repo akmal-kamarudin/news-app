@@ -1,16 +1,22 @@
-import "./App.css";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import "./App.css";
 
 function App() {
   return (
-    <>
-      <Router>
+    <div className="backgroundImage">
+      {/* <Router>
         <Routes>
-          <Route path="/" {...props} element={<Login />} />
-          <Route path="/home" {...props} element={<Home />} />
+          <Route path="./" element={<Login />} />  {...props} 
+          <Route path="/home" element={<Home />} />
         </Routes>
-      </Router>
-    </>
+      </Router> */}
+      {/* <Home /> */}
+      <Login />
+    </div>
   );
 }
 
