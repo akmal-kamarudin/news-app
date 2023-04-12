@@ -7,6 +7,7 @@ const Home = () => {
   return (
     <>
       <Grid container className="main-container" direction={"column"}>
+        <h1>HOMEEEEE</h1>
         <Grid
           className="header-container"
           item

@@ -8,14 +8,14 @@ import "./App.css";
 function App() {
   return (
     <div className="backgroundImage">
-      {/* <Router>
+      <Router>
         <Routes>
-          <Route path="./" element={<Login />} />  {...props} 
+          <Route path="/" exact element={<Login />} /> {/* {...props}  */}
           <Route path="/home" element={<Home />} />
         </Routes>
-      </Router> */}
+      </Router>
       {/* <Home /> */}
-      <Login />
+      {/* <Login /> */}
     </div>
   );
 }
