@@ -1,4 +1,5 @@
 import React from "react";
+import Header from "./Header";
 import MyFavPanel from "./MyFavPanel";
 import DisplayResults from "./DisplayResults";
 import Grid from "@mui/material/Grid";
@@ -7,13 +8,9 @@ const Home = () => {
   return (
     <>
       <Grid container className="main-container" direction={"column"}>
-        <h1>HOMEEEEE</h1>
-        <Grid
-          className="header-container"
-          item
-          lg={1}
-          style={{ maxHeight: "10vh" }}
-        ></Grid>
+        <Grid className="header-container" item lg={1} style={{ maxHeight: "10vh" }}>
+          <Header />
+        </Grid>
         <Grid className="content-container" item lg={11}>
           <Grid container direction="row" style={{ height: "100%" }}>
             <Grid className="left-panel-container" item lg="2.5">

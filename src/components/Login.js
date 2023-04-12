@@ -8,19 +8,23 @@ const Login = () => {
     password: 12345,
   };
 
+  const LOCAL_STORAGE_KEY1 = "isLoggedIn";
+  const LOCAL_STORAGE_KEY2 = "userName";
+
   const [inputs, setInputs] = useState({
     userName: "",
     password: "",
   });
 
-  const LOCAL_STORAGE_KEY = "isLoggedIn";
   const [isLoggedIn, setIsLoggedIn] = useState(
-    JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) ?? false
+    JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY1)) ?? false,
+    JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY2)) ?? null
   );
 
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(isLoggedIn));
-  }, [isLoggedIn]);
+    localStorage.setItem(LOCAL_STORAGE_KEY1, JSON.stringify(isLoggedIn));
+    localStorage.setItem(LOCAL_STORAGE_KEY2, JSON.stringify(inputs.userName));
+  }, [isLoggedIn, inputs]);
 
   const [isLoginInProgress, setIsLoginInProgress] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
@@ -30,7 +34,6 @@ const Login = () => {
 
   const loginButton = (e) => {
     console.log(inputs);
-    // setIsLoggedIn(false);
     e.preventDefault();
 
     if (inputs.userName === "" || inputs.password === "") {
@@ -43,10 +46,9 @@ const Login = () => {
       alert("YEAY you got in!");
     } else {
       setIsLoggedIn(false);
+      setInputs({ userName: "", password: "" });
       alert("BOOO!! Try again..");
     }
-
-    setInputs({ userName: "", password: "" });
   };
 
   return (
