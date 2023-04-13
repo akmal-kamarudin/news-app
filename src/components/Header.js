@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import { Grid, TextField, Button, Chip } from "@mui/material";
+import { Grid, Divider, TextField, Button, Chip } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 
 const Header = () => {
@@ -56,20 +56,23 @@ const Header = () => {
             type="submit"
             sx={{
               width: "12ch",
+              textTransform: "capitalize",
             }}
           >
             Search
           </Button>
         </Grid>
         <Grid sx={{ m: 1 }}>
-          <Chip icon={<FaceIcon />} label="USERNAME" color="primary" />
+          <Chip icon={<FaceIcon />} label={userName} color="secondary" />
           <Button
             variant="contained"
-            size="medium"
+            size="small"
             type="submit"
+            color="warning"
             sx={{
               ml: 1,
               width: "3ch",
+              textTransform: "capitalize",
             }}
             onClick={logoutHandler}
           >
@@ -77,6 +80,7 @@ const Header = () => {
           </Button>
         </Grid>
       </Grid>
+      <Divider />
     </>
   );
 };

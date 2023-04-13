@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <>
       <Grid container className="main-container" direction={"column"}>
-        <Grid className="header-container" item lg={1} style={{ maxHeight: "10vh" }}>
+        <Grid className="header-container" item lg={1} style={{ maxHeight: "12vh" }}>
           <Header />
         </Grid>
         <Grid className="content-container" item lg={11}>
