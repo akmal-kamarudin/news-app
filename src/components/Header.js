@@ -12,27 +12,37 @@ const Header = () => {
         alignItems="center"
         justifyContent="space-between"
       >
-        <h1>Today's News</h1>
-        <Grid>
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+        <Grid sx={{ m: 1 }}>Today's News</Grid>
+        <Grid sx={{ m: 1 }}>
+          <TextField
+            id="outlined-size-small"
+            label="Search for News"
+            defaultValue="Small"
+            size="small"
+            sx={{
+              mr: 1,
+              width: "32ch",
+            }}
+          />
           <Button
             variant="contained"
             size="medium"
             type="submit"
             sx={{
-              width: "30ch",
+              width: "12ch",
             }}
           >
-            Search for News
+            Search
           </Button>
         </Grid>
-        <Grid>
+        <Grid sx={{ m: 1 }}>
           <Chip icon={<FaceIcon />} label="USERNAME" color="primary" />
           <Button
             variant="contained"
             size="medium"
             type="submit"
             sx={{
+              ml: 1,
               width: "3ch",
             }}
           >

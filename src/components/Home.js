@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header";
 import MyFavPanel from "./MyFavPanel";
 import DisplayResults from "./DisplayResults";
-import Grid from "@mui/material/Grid";
+import { Grid } from "@mui/material";
 
 const Home = () => {
   return (
@@ -13,7 +13,7 @@ const Home = () => {
         </Grid>
         <Grid className="content-container" item lg={11}>
           <Grid container direction="row" style={{ height: "100%" }}>
-            <Grid className="left-panel-container" item lg="2.5">
+            <Grid className="left-panel-container" item lg={2.5}>
               <MyFavPanel
                 style={{ overflowY: "scroll" }}
                 // handleSetKeyword={handleSetKeyword}
@@ -21,7 +21,7 @@ const Home = () => {
                 // clearMyFav={clearMyFav}
               ></MyFavPanel>
             </Grid>
-            <Grid className="result-container" item lg="9.5">
+            <Grid className="result-container" item lg={9.5}>
               <DisplayResults
               // keyWord={keyWord}
               // updateMyFav={updateMyFav}
