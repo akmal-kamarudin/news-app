@@ -33,7 +33,7 @@ const Header = (props) => {
     e.preventDefault();
     props.handleSetKeyword(Search);
     setSearch("");
-    console.log("testtt");
+    console.log("Searchingg....");
   };
 
   return (

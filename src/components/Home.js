@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import api from "../api/config";
+import axios from "axios";
 import Header from "./Header";
 import MyFavPanel from "./MyFavPanel";
 import DisplayResults from "./DisplayResults";
 import { Grid } from "@mui/material";
 
-const API_URL = "https://newsapi.org/v2/everything?";
-
 const Home = () => {
+  const API_URL = "https://newsapi.org/v2/everything?";
+  const pageSize = process.env.REACT_APP_PAGE_SIZE;
+  const pageNo = process.env.REACT_APP_PAGE_NO;
+  const apiKey = process.env.REACT_APP_NEWS_API_KEY;
   const [keyWord, setKeyWord] = useState("");
 
   // const handleSetKeyword = (keyWord) => {
@@ -26,19 +28,18 @@ const Home = () => {
   //   }
   // };
 
-  // const retrieveNews = async () => {
-  //   const response = await api.get("baseURL");
-  //   const data = await response.json();
-  // };
-
   const handleSetKeyword = async (keyWord) => {
-    const response = await fetch(
-      `${API_URL}q=${keyWord}&apiKey=${process.env.REACT_APP_API_KEY}`
-    );
-    console.log(response);
-    // const data = await response.json();
-
-    // setMovies(data.Search);
+    try {
+      const response = await axios.get(
+        `${API_URL}q=${keyWord}&pageSize=${pageSize}&page=${pageNo}&apiKey=${apiKey}`
+      );
+      console.log(response);
+      const data = await response.data.articles;
+      console.log(data);
+      // handleSetKeyword(response.data.articles);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
