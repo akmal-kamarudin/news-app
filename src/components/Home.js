@@ -35,12 +35,14 @@ const Home = () => {
       );
       console.log(response);
       const data = await response.data.articles;
-      console.log(data);
-      // handleSetKeyword(response.data.articles);
+      // console.log(data);
+      setKeyWord(data);
     } catch (error) {
       console.error(error);
     }
   };
+
+  const updateMyFav = () => {};
 
   return (
     <>
@@ -67,7 +69,7 @@ const Home = () => {
             <Grid item lg={9.5} md={8}>
               <DisplayResults
                 keyWord={keyWord}
-                // updateMyFav={updateMyFav}
+                updateMyFav={updateMyFav}
               ></DisplayResults>
             </Grid>
           </Grid>
