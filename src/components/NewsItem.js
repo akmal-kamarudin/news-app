@@ -22,7 +22,7 @@ const NewsItem = (props) => {
   return (
     <>
       <Card
-        style={{ width: 320, height: 480 }}
+        style={{ width: 320, height: 460 }}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
@@ -38,7 +38,7 @@ const NewsItem = (props) => {
         <CardActionArea>
           {hover ? (
             <>
-              <CardContent style={{ textAlign: "center" }}>
+              <CardContent style={{ textAlign: "center", height: 290 }}>
                 <Typography variant="h6" color="text.secondary">
                   {news.title}
                 </Typography>
@@ -65,18 +65,27 @@ const NewsItem = (props) => {
               <CardMedia
                 component="img"
                 height="200"
-                image={news.urlToImage}
+                image={
+                  news.urlToImage ??
+                  "https://static8.depositphotos.com/1034557/983/i/450/depositphotos_9831932-stock-photo-news-word-cloud.jpg"
+                }
                 alt="News Thumbnail"
               />
-              <CardContent>
+              <CardContent
+                style={{
+                  height: 90,
+                }}
+              >
                 <Typography variant="h6" color="text.secondary">
-                  {news.title}
+                  {news.title.length > 80
+                    ? news.title.substring(0, 80) + "..."
+                    : news.title}
                 </Typography>
               </CardContent>
             </>
           )}
         </CardActionArea>
-        <CardActions disableSpacing style={{ transform: "none" }}>
+        <CardActions disableSpacing>
           <IconButton aria-label="add to favorites">
             <FavoriteIcon style={{ color: red[700] }} />
           </IconButton>
