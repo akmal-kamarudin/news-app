@@ -5,7 +5,7 @@ import { Grid, TextField, Button, Box, LinearProgress } from "@mui/material";
 const Login = () => {
   const user = {
     userName: "John",
-    password: 12345,
+    password: "1234",
   };
 
   const LOCAL_STORAGE_KEY1 = "isLoggedIn";
@@ -34,6 +34,7 @@ const Login = () => {
 
   const loginButton = (e) => {
     console.log(inputs);
+    console.log(user);
     e.preventDefault();
 
     if (inputs.userName === "" || inputs.password === "") {
@@ -41,7 +42,7 @@ const Login = () => {
       return;
     }
 
-    if (inputs.userName === user.userName || inputs.password === user.password) {
+    if (inputs.userName === user.userName && inputs.password === user.password) {
       setIsLoggedIn(true);
       alert("YEAY you got in!");
     } else {

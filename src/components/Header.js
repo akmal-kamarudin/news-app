@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
+import { useNewsCrud } from "../context/NewsCrudContext";
 import { Grid, Divider, TextField, Button, Chip } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 
-const Header = (props) => {
+const Header = () => {
+  const { handleSetKeyword, keyWord } = useNewsCrud();
+
   const LOCAL_STORAGE_KEY1 = "isLoggedIn";
   const LOCAL_STORAGE_KEY2 = "userName";
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -17,21 +20,19 @@ const Header = (props) => {
     localStorage.setItem(LOCAL_STORAGE_KEY2, JSON.stringify(userName));
   }, [isLoggedIn, userName]);
 
-  const { keyWord } = props;
-  const [Search, setSearch] = useState(keyWord);
+  const [Search, setSearch] = useState("");
 
   if (!isLoggedIn) return <Navigate to="/"></Navigate>;
 
   const logoutHandler = (e) => {
     e.preventDefault();
-
     setIsLoggedIn(false);
     setUserName("");
   };
 
   const getSearchTerm = (e) => {
     e.preventDefault();
-    props.handleSetKeyword(Search);
+    handleSetKeyword(Search);
     setSearch("");
     console.log("Searchingg....");
   };
