@@ -1,19 +1,14 @@
-import React, { useState } from "react";
-import Header from "./Header";
-import MyFavPanel from "./MyFavPanel";
-import DisplayResults from "./DisplayResults";
+import React from "react";
+import Header from "../components/Header";
+import MyFavPanel from "../components/MyFavPanel";
+import DisplayResults from "../components/DisplayResults";
 import { NewsCrudContextProvider } from "../context/NewsCrudContext";
-import { useNewsCrud } from "../context/NewsCrudContext";
 import { Grid } from "@mui/material";
 
 const Home = () => {
-  // const { keyWord } = useNewsCrud();
-
-  const updateMyFav = () => {};
-
   return (
     <>
-      <Grid container direction="column">
+       <Grid container direction="column">
         <NewsCrudContextProvider>
           <Grid
             className="header-container"
@@ -47,5 +42,4 @@ const Home = () => {
     </>
   );
 };
-
 export default Home;
