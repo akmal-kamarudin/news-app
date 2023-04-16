@@ -1,10 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./components/Home";
-import Login from "./components/Login";
+import Home from "./pages/home";
+import Login from "./pages/login";
 // import { NewsCrudContextProvider } from "./context/NewsCrudContext";
-import "./App.css";
 
 function App() {
   return (
