@@ -12,34 +12,35 @@ import {
   Avatar,
 } from "@mui/material";
 
-const NewsItem = () => {
+const NewsItem = (props) => {
+  const { news } = props;
+  // console.log(news);
+
   return (
     <>
       <Card sx={{ maxWidth: 320 }}>
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              N
+              {news.source.name.charAt(0)}
             </Avatar>
           }
           // action={}
-          title="The News Title"
-          subheader="September 14, 2016"
+          title={news.source.name}
+          subheader={news.publishedAt.split("T")[0]}
         />
         <CardMedia
           component="img"
           height="194"
-          image="/static/images/cards/paella.jpg"
+          image={news.urlToImage}
           alt="News Thumbnail"
         />
         <CardContent>
           <Typography variant="h6" color="text.secondary">
-            The Title
+            {news.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            {news.content}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>

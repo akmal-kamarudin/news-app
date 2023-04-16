@@ -13,7 +13,6 @@ export function NewsCrudContextProvider({ children }) {
   // const [news, setNews] = useState([]);
 
   const handleSetKeyword = async (keyWord) => {
-    // setKeyWord(keyWord);
     try {
       const response = await axios.get(
         `${API_URL}q=${keyWord}&pageSize=${pageSize}&page=${pageNo}&apiKey=${apiKey}`

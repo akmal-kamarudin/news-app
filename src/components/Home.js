@@ -23,7 +23,6 @@ const Home = () => {
             style={{ maxHeight: "10vh" }}
           >
             <Header></Header>
-            {/* handleSetKeyword={handleSetKeyword} keyWord={keyWord} */}
           </Grid>
           <Grid className="content-container" item lg={11}>
             <Grid container direction="row" style={{ height: "100vh" }}>
