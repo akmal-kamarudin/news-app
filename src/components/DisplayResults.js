@@ -5,7 +5,6 @@ import { Grid, Box, Button } from "@mui/material";
 
 const DisplayResults = () => {
   const { keyWord } = useNewsCrud();
-
   const [news, setNews] = useState([]);
   // const [isLoading, setIsLoading] = useState();
 
@@ -13,13 +12,10 @@ const DisplayResults = () => {
     setNews(keyWord);
   }, [keyWord]);
 
-  // console.log("displaying...");
-
-  const renderNewsItem = news.map((newsItem, index) => {
-    // console.log(newsItem);
+  const renderNewsItem = news.map((newsItem) => {
     return (
-      <Grid item xs={1} sm={1} md={1}>
-        <NewsItem news={newsItem} key={index} />
+      <Grid item xs={"auto"} sm={"auto"} md={"auto"} key={newsItem.title}>
+        <NewsItem news={newsItem} />
       </Grid>
     );
   });
