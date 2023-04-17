@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 
 const newsCrudContext = createContext();
@@ -11,6 +11,10 @@ export function NewsCrudContextProvider({ children }) {
 
   const [keyWord, setKeyWord] = useState([]);
   // const [news, setNews] = useState([]);
+  const LOCAL_STORAGE_KEY3 = "my-Favourites";
+  const [myFav, setMyFav] = useState(
+    JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY3)) ?? []
+  );
 
   const handleSetKeyword = async (keyWord) => {
     try {
@@ -26,9 +30,32 @@ export function NewsCrudContextProvider({ children }) {
     }
   };
 
+  const updateMyFav = async (title) => {
+    const favNews = keyWord.filter((news) => {
+      return news.title === title;
+    });
+
+    setMyFav([...myFav, ...favNews]);
+  };
+
+  // useEffect(() => {
+  //   // Retrieve the existing favorites from localStorage
+  //   const storedFavNews = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY3));
+
+  //   // If stored favorites exist, set them to the state
+  //   if (storedFavNews) {
+  //     setMyFav(storedFavNews);
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY3, JSON.stringify(myFav));
+  }, [myFav]);
+
   const value = {
     keyWord,
     handleSetKeyword,
+    updateMyFav,
   };
 
   return <newsCrudContext.Provider value={value}>{children}</newsCrudContext.Provider>;

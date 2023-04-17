@@ -1,13 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./pages/home";
-import Login from "./pages/login";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 // import { NewsCrudContextProvider } from "./context/NewsCrudContext";
 
 function App() {
   return (
-    <div className="backgroundImage">
+    <>
+      <div className="backgroundImage"></div>
       <Router>
         {/* <NewsCrudContextProvider> */}
         <Routes>
@@ -16,7 +17,7 @@ function App() {
         </Routes>
         {/* </NewsCrudContextProvider> */}
       </Router>
-    </div>
+    </>
   );
 }
 

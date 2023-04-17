@@ -8,7 +8,7 @@ import { Grid } from "@mui/material";
 const Home = () => {
   return (
     <>
-       <Grid container direction="column">
+      <Grid container direction="column">
         <NewsCrudContextProvider>
           <Grid
             className="header-container"

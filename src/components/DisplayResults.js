@@ -40,7 +40,7 @@ const DisplayResults = () => {
                 type="submit"
                 color="warning"
                 sx={{
-                  mt: 2,
+                  mt: 4,
                   width: "14ch",
                   textTransform: "capitalize",
                 }}
