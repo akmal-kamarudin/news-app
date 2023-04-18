@@ -21,7 +21,7 @@ const Header = () => {
     localStorage.setItem(LOCAL_STORAGE_KEY2, JSON.stringify(userName));
   }, [isLoggedIn, userName]);
 
-  const [Search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
 
   if (!isLoggedIn) return <Navigate to="/"></Navigate>;
 
@@ -33,9 +33,8 @@ const Header = () => {
 
   const getSearchTerm = (e) => {
     e.preventDefault();
-    handleSetKeyword(Search);
+    handleSetKeyword(search);
     setSearch("");
-    console.log("Searchingg....");
   };
 
   return (
@@ -62,7 +61,7 @@ const Header = () => {
               color="warning"
               label="Search for News"
               size="small"
-              value={Search}
+              value={search}
               onChange={(e) => setSearch(e.target.value)}
               sx={{ mr: 1, width: "32ch" }}
             />
@@ -97,7 +96,6 @@ const Header = () => {
           </Button>
         </Grid>
       </Grid>
-      <Divider variant="fullWidth" color={grey[50]} />
     </>
   );
 };

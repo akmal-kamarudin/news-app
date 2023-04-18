@@ -4,13 +4,17 @@ import { useNewsCrud } from "../context/NewsCrudContext";
 import { Grid, Box, Button } from "@mui/material";
 
 const DisplayResults = () => {
-  const { keyWord } = useNewsCrud();
+  const { keyWord, handleSetKeyword } = useNewsCrud();
   const [news, setNews] = useState([]);
   // const [isLoading, setIsLoading] = useState();
 
   useEffect(() => {
     setNews(keyWord);
   }, [keyWord]);
+
+  useEffect(() => {
+    handleSetKeyword("games");
+  }, []);
 
   const renderNewsItem = news.map((newsItem) => {
     return (
@@ -60,12 +64,3 @@ const DisplayResults = () => {
 };
 
 export default DisplayResults;
-
-// const renderNewsItem = Array.from(Array(news.length)).map((news, index) => {
-//   console.log(news);
-//   return (
-//     <Grid item xs={1} sm={1} md={1}>
-//       <NewsItem news={news} />
-//     </Grid>
-//   );
-// });

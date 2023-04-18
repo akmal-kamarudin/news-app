@@ -14,7 +14,7 @@ import {
 import { grey } from "@mui/material/colors";
 
 const MyFavPanel = () => {
-  const { myFav, deleteMyFav } = useNewsCrud();
+  const { myFav, clearMyFav, handleSetKeyword } = useNewsCrud();
 
   const renderFavItem = myFav.map((favItem, index) => {
     return (
@@ -32,11 +32,12 @@ const MyFavPanel = () => {
   });
 
   const deleteHandler = () => {
-    deleteMyFav();
+    clearMyFav();
   };
 
   return (
     <>
+      <Divider variant="fullWidth" color={grey[50]} />
       <Grid
         container
         spacing={0}

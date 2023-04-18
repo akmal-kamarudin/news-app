@@ -62,8 +62,6 @@ const Login = () => {
   if (isLoggedIn) return <Navigate to="/home"></Navigate>;
 
   const loginButton = (e) => {
-    console.log(inputs);
-    console.log(user);
     e.preventDefault();
 
     if (inputs.userName === "" || inputs.password === "") {
