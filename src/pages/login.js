@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { Grid, TextField, Button, Box, LinearProgress } from "@mui/material";
+import { useSnackbar } from "notistack";
 
 const Login = () => {
   const user = {
@@ -27,9 +28,37 @@ const Login = () => {
   }, [isLoggedIn, inputs]);
 
   const [isLoginInProgress, setIsLoginInProgress] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  // checks the isLoggedIn status
+  const { enqueueSnackbar } = useSnackbar();
+
+  useEffect(() => {
+    const variant = errorMessage;
+    const position = { vertical: "bottom", horizontal: "center" };
+
+    if (errorMessage === "error") {
+      enqueueSnackbar("Error Message! Wrong login details.", {
+        variant,
+        anchorOrigin: position,
+        autoHideDuration: 1000,
+      });
+    } else if (errorMessage === "warning") {
+      enqueueSnackbar("Warning Message! All the fields are mandatory.", {
+        variant,
+        anchorOrigin: position,
+        autoHideDuration: 1000,
+      });
+    } else if (errorMessage === "success") {
+      enqueueSnackbar("Success! Welcome to the Homepage.", {
+        variant,
+        anchorOrigin: position,
+        autoHideDuration: 1000,
+      });
+    }
+
+    setErrorMessage("");
+  }, [errorMessage]);
+
   if (isLoggedIn) return <Navigate to="/home"></Navigate>;
 
   const loginButton = (e) => {
@@ -38,17 +67,18 @@ const Login = () => {
     e.preventDefault();
 
     if (inputs.userName === "" || inputs.password === "") {
-      alert("All the fields are mandatory!");
+      setInputs({ userName: "", password: "" });
+      setErrorMessage("warning");
       return;
     }
 
     if (inputs.userName === user.userName && inputs.password === user.password) {
       setIsLoggedIn(true);
-      alert("YEAY you got in!");
+      setErrorMessage("success");
     } else {
       setIsLoggedIn(false);
       setInputs({ userName: "", password: "" });
-      alert("BOOO!! Try again..");
+      setErrorMessage("error");
     }
   };
 
@@ -76,8 +106,7 @@ const Login = () => {
               width: "60ch",
               height: "40ch",
               borderRadius: "6px",
-              backgroundColor: "lightgrey",
-              opacity: [0.9, 0.8, 0.6],
+              backgroundColor: "rgba(250, 250, 250, 0.5)",
             }}
           >
             <TextField
@@ -113,6 +142,7 @@ const Login = () => {
                 mb: 0,
                 width: "37ch",
               }}
+              onClick={() => setErrorMessage(errorMessage)}
             >
               Login
             </Button>

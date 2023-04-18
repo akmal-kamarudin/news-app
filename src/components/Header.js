@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { useNewsCrud } from "../context/NewsCrudContext";
 import { Grid, Divider, TextField, Button, Chip, Typography } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
-import { orange, grey } from "@mui/material/colors";
+import { red, grey } from "@mui/material/colors";
 
 const Header = () => {
   const { handleSetKeyword, keyWord } = useNewsCrud();
@@ -50,7 +50,7 @@ const Header = () => {
         <Grid sx={{ m: 1 }}>
           <Typography
             variant="h4"
-            color={orange[400]}
+            color={red[700]}
             sx={{ fontStyle: "italic", fontWeight: "bold" }}
           >
             Today's News
@@ -59,8 +59,6 @@ const Header = () => {
         <Grid sx={{ m: 1 }}>
           <form onSubmit={getSearchTerm}>
             <TextField
-              focused
-              id="outlined-size-small"
               color="warning"
               label="Search for News"
               size="small"

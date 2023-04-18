@@ -15,7 +15,7 @@ const Home = () => {
             item
             lg={1}
             md={4}
-            sx={{ maxHeight: "10vh", backgroundColor: "rgba(25, 25, 32, 0.8)" }}
+            sx={{ maxHeight: "10vh", backgroundColor: "rgba(25, 25, 32, 0.4)" }}
           >
             <Header></Header>
           </Grid>
@@ -28,7 +28,7 @@ const Home = () => {
                 sx={{
                   minHeight: "100%",
                   maxHeight: "100%",
-                  backgroundColor: "rgba(25, 25, 32, 0.8)",
+                  backgroundColor: "rgba(25, 25, 32, 0.4)",
                 }}
               >
                 <MyFavPanel
