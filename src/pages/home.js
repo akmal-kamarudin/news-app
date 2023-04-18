@@ -15,15 +15,24 @@ const Home = () => {
             item
             lg={1}
             md={4}
-            style={{ maxHeight: "10vh" }}
+            sx={{ maxHeight: "10vh", backgroundColor: "rgba(25, 25, 32, 0.8)" }}
           >
             <Header></Header>
           </Grid>
           <Grid className="content-container" item lg={11}>
-            <Grid container direction="row" style={{ height: "100vh" }}>
-              <Grid item lg={2.5} md={4} style={{ height: "100%" }}>
+            <Grid container direction="row" sx={{ height: "100vh" }}>
+              <Grid
+                item
+                lg={2.5}
+                md={4}
+                sx={{
+                  minHeight: "100%",
+                  maxHeight: "100%",
+                  backgroundColor: "rgba(25, 25, 32, 0.8)",
+                }}
+              >
                 <MyFavPanel
-                  style={{ overflowY: "scroll" }}
+                  sx={{ overflowY: "scroll" }}
                   // handleSetKeyword={handleSetKeyword}
                   // myFavourites={myFavourites}
                   // clearMyFav={clearMyFav}

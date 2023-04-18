@@ -30,7 +30,7 @@ export function NewsCrudContextProvider({ children }) {
     }
   };
 
-  const updateMyFav = async (title) => {
+  const updateMyFav = (title) => {
     const favNews = keyWord.filter((news) => {
       return news.title === title;
     });
@@ -38,15 +38,11 @@ export function NewsCrudContextProvider({ children }) {
     setMyFav([...myFav, ...favNews]);
   };
 
-  // useEffect(() => {
-  //   // Retrieve the existing favorites from localStorage
-  //   const storedFavNews = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY3));
-
-  //   // If stored favorites exist, set them to the state
-  //   if (storedFavNews) {
-  //     setMyFav(storedFavNews);
-  //   }
-  // }, []);
+  const deleteMyFav = () => {
+    console.log("delete ALL");
+    localStorage.removeItem(LOCAL_STORAGE_KEY3, JSON.stringify(myFav));
+    setMyFav([]);
+  };
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY3, JSON.stringify(myFav));
@@ -54,8 +50,10 @@ export function NewsCrudContextProvider({ children }) {
 
   const value = {
     keyWord,
+    myFav,
     handleSetKeyword,
     updateMyFav,
+    deleteMyFav,
   };
 
   return <newsCrudContext.Provider value={value}>{children}</newsCrudContext.Provider>;

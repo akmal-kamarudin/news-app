@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useNewsCrud } from "../context/NewsCrudContext";
-import { Grid, Divider, TextField, Button, Chip } from "@mui/material";
+import { Grid, Divider, TextField, Button, Chip, Typography } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
+import { orange, grey } from "@mui/material/colors";
 
 const Header = () => {
   const { handleSetKeyword, keyWord } = useNewsCrud();
@@ -46,11 +47,21 @@ const Header = () => {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Grid sx={{ m: 1 }}>Today's News</Grid>
+        <Grid sx={{ m: 1 }}>
+          <Typography
+            variant="h4"
+            color={orange[400]}
+            sx={{ fontStyle: "italic", fontWeight: "bold" }}
+          >
+            Today's News
+          </Typography>
+        </Grid>
         <Grid sx={{ m: 1 }}>
           <form onSubmit={getSearchTerm}>
             <TextField
+              focused
               id="outlined-size-small"
+              color="warning"
               label="Search for News"
               size="small"
               value={Search}
@@ -88,7 +99,7 @@ const Header = () => {
           </Button>
         </Grid>
       </Grid>
-      <Divider />
+      <Divider variant="fullWidth" color={grey[50]} />
     </>
   );
 };

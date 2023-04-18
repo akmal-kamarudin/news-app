@@ -1,4 +1,5 @@
 import React from "react";
+import { useNewsCrud } from "../context/NewsCrudContext";
 import {
   Grid,
   Divider,
@@ -8,9 +9,32 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
+  Typography,
 } from "@mui/material";
+import { grey } from "@mui/material/colors";
 
 const MyFavPanel = () => {
+  const { myFav, deleteMyFav } = useNewsCrud();
+
+  const renderFavItem = myFav.map((favItem, index) => {
+    return (
+      <React.Fragment key={index}>
+        <ListItem disablePadding>
+          <ListItemButton href={favItem.url} target="_blank" component="a">
+            <Typography variant="h6" color={grey[50]}>
+              <ListItemText primary={favItem.title} />
+            </Typography>
+          </ListItemButton>
+        </ListItem>
+        <Divider variant="fullWidth" color={grey[50]} />
+      </React.Fragment>
+    );
+  });
+
+  const deleteHandler = () => {
+    deleteMyFav();
+  };
+
   return (
     <>
       <Grid
@@ -28,12 +52,17 @@ const MyFavPanel = () => {
           alignItems="center"
           justifyContent="space-between"
         >
-          <Grid sx={{ m: 1 }}>My Favourites: </Grid>
+          <Grid sx={{ m: 2 }}>
+            <Typography variant="h6" color={grey[50]} sx={{ fontWeight: "normal" }}>
+              My Favourites: {myFav.length}
+            </Typography>
+          </Grid>
           <Button
             variant="contained"
             size="small"
             type="submit"
             color="warning"
+            onClick={deleteHandler}
             sx={{
               m: 1,
               width: "3ch",
@@ -44,25 +73,9 @@ const MyFavPanel = () => {
           </Button>
         </Grid>
         <Box>
-          <List>
-            <Divider variant="fullWidth" />
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemText primary="News 1" />
-              </ListItemButton>
-            </ListItem>
-            <Divider variant="fullWidth" />
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemText primary="News 2" />
-              </ListItemButton>
-            </ListItem>
-            <Divider variant="fullWidth" />
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemText primary="News 3" />
-              </ListItemButton>
-            </ListItem>
+          <List style={{ backgroundColor: "background.paper" }}>
+            <Divider variant="fullWidth" color={grey[50]} />
+            {renderFavItem}
           </List>
         </Box>
       </Grid>
