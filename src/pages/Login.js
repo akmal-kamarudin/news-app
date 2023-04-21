@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { Grid, TextField, Button, Box, LinearProgress, Typography } from "@mui/material";
-import { red } from "@mui/material/colors";
+import { deepPurple } from "@mui/material/colors";
 import { useSnackbar } from "notistack";
 
 const Login = () => {
@@ -103,7 +103,7 @@ const Login = () => {
         <Grid sx={{ mb: 2 }}>
           <Typography
             variant="h4"
-            color={red[700]}
+            color={deepPurple[700]}
             sx={{ fontStyle: "italic", fontWeight: "bold" }}
           >
             Today's News

@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { useNewsCrud } from "../context/NewsCrudContext";
 import { Grid, TextField, Button, Chip, Typography } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
-import { red } from "@mui/material/colors";
+import { deepOrange } from "@mui/material/colors";
 
 const Header = () => {
   const { handleSetKeyword, keyWord } = useNewsCrud();
@@ -54,7 +54,7 @@ const Header = () => {
         <Grid sx={{ m: 1 }}>
           <Typography
             variant="h4"
-            color={red[700]}
+            color={deepOrange[500]}
             sx={{ fontStyle: "italic", fontWeight: "bold" }}
           >
             Today's News
