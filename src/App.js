@@ -12,7 +12,7 @@ function App() {
       <SnackbarProvider>
         <Router>
           <Routes>
-            <Route path="/" exact element={<Login />} /> {/* {...props}  */}
+            <Route path="/" exact element={<Login />} />
             <Route path="/home" element={<Home />} />
           </Routes>
         </Router>
