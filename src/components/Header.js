@@ -10,18 +10,23 @@ const Header = () => {
 
   const LOCAL_STORAGE_KEY1 = "isLoggedIn";
   const LOCAL_STORAGE_KEY2 = "userName";
+
   const [isLoggedIn, setIsLoggedIn] = useState(
     JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY1)) ?? false
   );
   const [userName, setUserName] = useState(
-    JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY2)) ?? null
+    JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY2)) ?? ""
   );
+
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY1, JSON.stringify(isLoggedIn));
-    localStorage.setItem(LOCAL_STORAGE_KEY2, JSON.stringify(userName));
-  }, [isLoggedIn, userName]);
+  }, [isLoggedIn]);
 
-  const [search, setSearch] = useState("");
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY2, JSON.stringify(userName));
+  }, [userName]);
+
+  const [search, setSearch] = useState(keyWord);
 
   if (!isLoggedIn) return <Navigate to="/"></Navigate>;
 
@@ -58,6 +63,7 @@ const Header = () => {
         <Grid sx={{ m: 1 }}>
           <form onSubmit={getSearchTerm}>
             <TextField
+              focused
               color="warning"
               label="Search for News"
               size="small"
@@ -67,6 +73,7 @@ const Header = () => {
             />
             <Button
               variant="contained"
+              color="secondary"
               size="medium"
               type="submit"
               sx={{

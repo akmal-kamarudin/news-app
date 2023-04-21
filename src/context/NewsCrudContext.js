@@ -6,11 +6,12 @@ const newsCrudContext = createContext();
 export function NewsCrudContextProvider({ children }) {
   const API_URL = "https://newsapi.org/v2/everything?";
   const pageSize = process.env.REACT_APP_PAGE_SIZE;
-  const pageNo = process.env.REACT_APP_PAGE_NO;
+  // const pageNo = process.env.REACT_APP_PAGE_NO;
   const apiKey = process.env.REACT_APP_NEWS_API_KEY;
 
-  const [keyWord, setKeyWord] = useState("games");
+  const [keyWord, setKeyWord] = useState("Today's News");
   const [news, setNews] = useState([]);
+  const [pageNo, setPageNo] = useState(1);
   const LOCAL_STORAGE_KEY3 = "my-Favourites";
   const [myFav, setMyFav] = useState(
     JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY3)) ?? []
@@ -24,8 +25,27 @@ export function NewsCrudContextProvider({ children }) {
       console.log(response);
       const data = await response.data.articles;
       console.log(data);
-      setKeyWord(search);
       setNews(data);
+    } catch (error) {
+      console.error(error);
+    }
+
+    setKeyWord(search);
+  };
+
+  const loadMoreNews = async (newPage) => {
+    newPage++;
+    console.log(newPage);
+    setPageNo(newPage);
+
+    try {
+      const response = await axios.get(
+        `${API_URL}q=${keyWord}&pageSize=${pageSize}&page=${newPage}&apiKey=${apiKey}`
+      );
+      console.log(response);
+      const data = await response.data.articles;
+      console.log(data);
+      setNews((prevNews) => [...prevNews, ...data]);
     } catch (error) {
       console.error(error);
     }
@@ -36,7 +56,7 @@ export function NewsCrudContextProvider({ children }) {
       return news.title === title;
     });
 
-    setMyFav([...myFav, ...favNews]);
+    setMyFav((prevFav) => [...prevFav, ...favNews]);
   };
 
   const clearMyFav = () => {
@@ -52,8 +72,10 @@ export function NewsCrudContextProvider({ children }) {
   const value = {
     keyWord,
     news,
+    pageNo,
     myFav,
     handleSetKeyword,
+    loadMoreNews,
     updateMyFav,
     clearMyFav,
   };

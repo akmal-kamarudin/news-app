@@ -15,13 +15,13 @@ const Login = () => {
   const LOCAL_STORAGE_KEY2 = "userName";
 
   const [inputs, setInputs] = useState({
-    userName: "",
+    userName: JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY2)) ?? "",
     password: "",
   });
 
   const [isLoggedIn, setIsLoggedIn] = useState(
-    JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY1)) ?? false,
-    JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY2)) ?? null
+    JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY1)) ?? false
+    // JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY2)) ?? ""
   );
 
   useEffect(() => {
@@ -98,10 +98,10 @@ const Login = () => {
         spacing={0}
         direction="column"
         alignItems="center"
-        justifyContent="flex-start"
-        sx={{ minHeight: "100vh" }}
+        justifyContent="center"
+        sx={{ minHeight: "70vh" }}
       >
-        <Grid sx={{ mt: 10 }}>
+        <Grid sx={{ mb: 2 }}>
           <Typography
             variant="h4"
             color={red[700]}

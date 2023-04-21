@@ -4,7 +4,7 @@ import { useNewsCrud } from "../context/NewsCrudContext";
 import { Grid, Box, Button, LinearProgress, Typography } from "@mui/material";
 
 const DisplayResults = () => {
-  const { keyWord, news, handleSetKeyword } = useNewsCrud();
+  const { keyWord, news, pageNo, handleSetKeyword, loadMoreNews } = useNewsCrud();
   const [isLoading, setIsLoading] = useState(false);
   const [defaultNews, setDefaultNews] = useState(true);
 
@@ -24,9 +24,15 @@ const DisplayResults = () => {
     }
   }, [keyWord, news]);
 
-  const renderNewsItem = news.map((newsItem) => {
+  const loadMoreHandler = (e) => {
+    e.preventDefault();
+    loadMoreNews(pageNo);
+    document.documentElement.scrollTop = 0;
+  };
+
+  const renderNewsItem = news.map((newsItem, index) => {
     return (
-      <Grid item xs={"auto"} sm={"auto"} md={"auto"} key={newsItem.title}>
+      <Grid item xs={"auto"} sm={"auto"} md={"auto"} key={index}>
         <NewsItem news={newsItem} />
       </Grid>
     );
@@ -67,6 +73,7 @@ const DisplayResults = () => {
                       width: "14ch",
                       textTransform: "capitalize",
                     }}
+                    onClick={loadMoreHandler}
                   >
                     Load More
                   </Button>
@@ -74,7 +81,7 @@ const DisplayResults = () => {
               </>
             ) : (
               <Typography variant="h5" sx={{ fontWeight: "bold", m: 4 }}>
-                Sorry, No News are available for that Search
+                Sorry, no News are available for that Search
               </Typography>
             )}
           </>

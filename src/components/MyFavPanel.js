@@ -14,7 +14,7 @@ import {
 import { grey } from "@mui/material/colors";
 
 const MyFavPanel = () => {
-  const { myFav, clearMyFav, handleSetKeyword } = useNewsCrud();
+  const { myFav, clearMyFav } = useNewsCrud();
 
   const renderFavItem = myFav.map((favItem, index) => {
     return (
