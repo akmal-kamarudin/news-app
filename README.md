@@ -1,7 +1,7 @@
 # Personal News-App Project
 
-This project only has one user for login purpose. Here's the login details:
-Username: John
+This project only has one user for login purpose. Here's the login details: \
+Username: John \
 Password: 1234
 
 ## Getting Started with Create React App
