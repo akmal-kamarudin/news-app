@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import { Grid, TextField, Button, Box, LinearProgress } from "@mui/material";
+import { Grid, TextField, Button, Box, LinearProgress, Typography } from "@mui/material";
+import { red } from "@mui/material/colors";
 import { useSnackbar } from "notistack";
+// import { red, grey } from "@mui/material/colors";
 
 const Login = () => {
   const user = {
@@ -40,24 +42,34 @@ const Login = () => {
       enqueueSnackbar("Error Message! Wrong login details.", {
         variant,
         anchorOrigin: position,
-        autoHideDuration: 1000,
+        autoHideDuration: 1500,
       });
     } else if (errorMessage === "warning") {
       enqueueSnackbar("Warning Message! All the fields are mandatory.", {
         variant,
         anchorOrigin: position,
-        autoHideDuration: 1000,
+        autoHideDuration: 1500,
       });
     } else if (errorMessage === "success") {
       enqueueSnackbar("Success! Welcome to the Homepage.", {
         variant,
         anchorOrigin: position,
-        autoHideDuration: 1000,
+        autoHideDuration: 1500,
       });
     }
 
     setErrorMessage("");
-  }, [errorMessage]);
+  }, [errorMessage, enqueueSnackbar]);
+
+  useEffect(() => {
+    if (isLoginInProgress) {
+      setTimeout(() => {
+        setIsLoginInProgress(false);
+        setIsLoggedIn(true);
+        setErrorMessage("success");
+      }, 1000);
+    }
+  }, [isLoginInProgress]);
 
   if (isLoggedIn) return <Navigate to="/home"></Navigate>;
 
@@ -71,8 +83,7 @@ const Login = () => {
     }
 
     if (inputs.userName === user.userName && inputs.password === user.password) {
-      setIsLoggedIn(true);
-      setErrorMessage("success");
+      setIsLoginInProgress(true);
     } else {
       setIsLoggedIn(false);
       setInputs({ userName: "", password: "" });
@@ -91,7 +102,13 @@ const Login = () => {
         sx={{ minHeight: "100vh" }}
       >
         <Grid sx={{ mt: 10 }}>
-          <h1>Today's News</h1>
+          <Typography
+            variant="h4"
+            color={red[700]}
+            sx={{ fontStyle: "italic", fontWeight: "bold" }}
+          >
+            Today's News
+          </Typography>
         </Grid>
         <form onSubmit={loginButton}>
           <Grid
@@ -145,7 +162,7 @@ const Login = () => {
               Login
             </Button>
             <Box sx={{ width: "36ch" }}>
-              <LinearProgress />
+              {isLoginInProgress ? <LinearProgress color="secondary" /> : <></>}
             </Box>
           </Grid>
         </form>

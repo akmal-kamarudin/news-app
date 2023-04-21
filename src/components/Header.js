@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useNewsCrud } from "../context/NewsCrudContext";
-import { Grid, Divider, TextField, Button, Chip, Typography } from "@mui/material";
+import { Grid, TextField, Button, Chip, Typography } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
-import { red, grey } from "@mui/material/colors";
+import { red } from "@mui/material/colors";
 
 const Header = () => {
   const { handleSetKeyword, keyWord } = useNewsCrud();

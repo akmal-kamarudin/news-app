@@ -9,30 +9,30 @@ export function NewsCrudContextProvider({ children }) {
   const pageNo = process.env.REACT_APP_PAGE_NO;
   const apiKey = process.env.REACT_APP_NEWS_API_KEY;
 
-  // const [defaultNews, setDefaultNews] = useState("");
-  const [keyWord, setKeyWord] = useState([]);
-  // const [news, setNews] = useState([]);
+  const [keyWord, setKeyWord] = useState("games");
+  const [news, setNews] = useState([]);
   const LOCAL_STORAGE_KEY3 = "my-Favourites";
   const [myFav, setMyFav] = useState(
     JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY3)) ?? []
   );
 
-  const handleSetKeyword = async (keyWord) => {
+  const handleSetKeyword = async (search) => {
     try {
       const response = await axios.get(
-        `${API_URL}q=${keyWord}&pageSize=${pageSize}&page=${pageNo}&apiKey=${apiKey}`
+        `${API_URL}q=${search}&pageSize=${pageSize}&page=${pageNo}&apiKey=${apiKey}`
       );
       console.log(response);
       const data = await response.data.articles;
       console.log(data);
-      setKeyWord(data);
+      setKeyWord(search);
+      setNews(data);
     } catch (error) {
       console.error(error);
     }
   };
 
   const updateMyFav = (title) => {
-    const favNews = keyWord.filter((news) => {
+    const favNews = news.filter((news) => {
       return news.title === title;
     });
 
@@ -51,6 +51,7 @@ export function NewsCrudContextProvider({ children }) {
 
   const value = {
     keyWord,
+    news,
     myFav,
     handleSetKeyword,
     updateMyFav,

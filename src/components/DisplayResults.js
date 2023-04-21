@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from "react";
 import NewsItem from "./NewsItem";
 import { useNewsCrud } from "../context/NewsCrudContext";
-import { Grid, Box, Button } from "@mui/material";
+import { Grid, Box, Button, LinearProgress, Typography } from "@mui/material";
 
 const DisplayResults = () => {
-  const { keyWord, handleSetKeyword } = useNewsCrud();
-  const [news, setNews] = useState([]);
-  // const [isLoading, setIsLoading] = useState();
+  const { keyWord, news, handleSetKeyword } = useNewsCrud();
+  const [isLoading, setIsLoading] = useState(false);
+  const [defaultNews, setDefaultNews] = useState(true);
 
   useEffect(() => {
-    setNews(keyWord);
-  }, [keyWord]);
+    if (defaultNews) {
+      handleSetKeyword(keyWord);
+      setDefaultNews(false);
+    }
+  }, [defaultNews, handleSetKeyword, keyWord]);
 
   useEffect(() => {
-    handleSetKeyword("games");
-  }, []);
+    if (keyWord || news.length > 0) {
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    }
+  }, [keyWord, news]);
 
   const renderNewsItem = news.map((newsItem) => {
     return (
@@ -26,37 +34,50 @@ const DisplayResults = () => {
 
   return (
     <>
+      <Typography variant="h4" sx={{ fontWeight: "bold", m: 4 }}>
+        Latest News for {keyWord}
+      </Typography>
       <Box sx={{ flexGrow: 1, m: 8 }}>
-        {renderNewsItem.length > 0 ? (
-          <>
-            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 1, sm: 2, md: 4 }}>
-              {renderNewsItem}
-            </Grid>
-            <Grid
-              container
-              direction="column"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Button
-                variant="contained"
-                size="medium"
-                type="submit"
-                color="warning"
-                sx={{
-                  mt: 4,
-                  width: "14ch",
-                  textTransform: "capitalize",
-                }}
-              >
-                Load More
-              </Button>
-            </Grid>
-          </>
+        {isLoading ? (
+          <LinearProgress color="secondary" />
         ) : (
-          <h2>
-            <strong>Sorry, No News are available for that Search</strong>
-          </h2>
+          <>
+            {renderNewsItem.length > 0 ? (
+              <>
+                <Grid
+                  container
+                  spacing={{ xs: 2, md: 3 }}
+                  columns={{ xs: 1, sm: 2, md: 4 }}
+                >
+                  {renderNewsItem}
+                </Grid>
+                <Grid
+                  container
+                  direction="column"
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Button
+                    variant="contained"
+                    size="medium"
+                    type="submit"
+                    color="warning"
+                    sx={{
+                      mt: 4,
+                      width: "14ch",
+                      textTransform: "capitalize",
+                    }}
+                  >
+                    Load More
+                  </Button>
+                </Grid>
+              </>
+            ) : (
+              <Typography variant="h5" sx={{ fontWeight: "bold", m: 4 }}>
+                Sorry, No News are available for that Search
+              </Typography>
+            )}
+          </>
         )}
       </Box>
     </>
