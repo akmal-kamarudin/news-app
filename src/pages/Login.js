@@ -3,7 +3,6 @@ import { Navigate } from "react-router-dom";
 import { Grid, TextField, Button, Box, LinearProgress, Typography } from "@mui/material";
 import { red } from "@mui/material/colors";
 import { useSnackbar } from "notistack";
-// import { red, grey } from "@mui/material/colors";
 
 const Login = () => {
   const user = {
