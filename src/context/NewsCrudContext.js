@@ -16,6 +16,7 @@ export function NewsCrudContextProvider({ children }) {
     JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY3)) ?? []
   );
 
+  // Search News
   const handleSetKeyword = async (search) => {
     try {
       const response = await axios.get(
@@ -30,6 +31,7 @@ export function NewsCrudContextProvider({ children }) {
     setKeyWord(search);
   };
 
+  // Load More News
   const loadMoreNews = async (newPage) => {
     newPage++;
     setPageNo(newPage);
@@ -45,6 +47,7 @@ export function NewsCrudContextProvider({ children }) {
     }
   };
 
+  // Store Fav Items
   const updateMyFav = (title) => {
     const favNews = news.filter((news) => {
       return news.title === title;
@@ -53,6 +56,7 @@ export function NewsCrudContextProvider({ children }) {
     setMyFav((prevFav) => [...prevFav, ...favNews]);
   };
 
+  // Clear Fav Items
   const clearMyFav = () => {
     localStorage.removeItem(LOCAL_STORAGE_KEY3, JSON.stringify(myFav));
     setMyFav([]);

@@ -20,6 +20,7 @@ const NewsItem = (props) => {
   const [hover, setHover] = useState(false);
   const { news } = props;
 
+  // Fav button
   const favHandler = (myFavTitle) => {
     updateMyFav(myFavTitle);
   };

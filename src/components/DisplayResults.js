@@ -15,6 +15,7 @@ const DisplayResults = () => {
     }
   }, [defaultNews, handleSetKeyword, keyWord]);
 
+  // Progress bar
   useEffect(() => {
     if (keyWord || news.length > 0) {
       setIsLoading(true);
@@ -24,12 +25,14 @@ const DisplayResults = () => {
     }
   }, [keyWord, news]);
 
+  // Load More button
   const loadMoreHandler = (e) => {
     e.preventDefault();
     loadMoreNews(pageNo);
     document.documentElement.scrollTop = 0;
   };
 
+  // Display News result
   const renderNewsItem = news.map((newsItem, index) => {
     return (
       <Grid item xs={"auto"} sm={"auto"} md={"auto"} key={index}>

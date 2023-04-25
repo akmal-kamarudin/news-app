@@ -30,12 +30,14 @@ const Header = () => {
 
   if (!isLoggedIn) return <Navigate to="/"></Navigate>;
 
+  // Logout button
   const logoutHandler = (e) => {
     e.preventDefault();
     setIsLoggedIn(false);
     setUserName("");
   };
 
+  // Search button
   const getSearchTerm = (e) => {
     e.preventDefault();
     handleSetKeyword(search);

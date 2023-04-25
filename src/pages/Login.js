@@ -32,6 +32,7 @@ const Login = () => {
 
   const { enqueueSnackbar } = useSnackbar();
 
+  // Error alert
   useEffect(() => {
     const variant = errorMessage;
     const position = { vertical: "bottom", horizontal: "center" };
@@ -59,6 +60,7 @@ const Login = () => {
     setErrorMessage("");
   }, [errorMessage, enqueueSnackbar]);
 
+  // Progress bar
   useEffect(() => {
     if (isLoginInProgress) {
       setTimeout(() => {
@@ -71,6 +73,7 @@ const Login = () => {
 
   if (isLoggedIn) return <Navigate to="/home"></Navigate>;
 
+  // Login button
   const loginButton = (e) => {
     e.preventDefault();
 

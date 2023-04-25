@@ -16,6 +16,7 @@ import { grey } from "@mui/material/colors";
 const MyFavPanel = () => {
   const { myFav, clearMyFav } = useNewsCrud();
 
+  // Display Fav list
   const renderFavItem = myFav.map((favItem, index) => {
     return (
       <React.Fragment key={index}>
@@ -31,6 +32,7 @@ const MyFavPanel = () => {
     );
   });
 
+  // Clear button
   const deleteHandler = () => {
     clearMyFav();
   };
