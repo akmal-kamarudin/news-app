@@ -138,7 +138,7 @@ const Login = () => {
               id="outlined-basic"
               label="Password"
               variant="outlined"
-              type="text"
+              type="password"
               value={inputs.password}
               onChange={(e) =>
                 setInputs((inputs) => ({ ...inputs, password: e.target.value }))
