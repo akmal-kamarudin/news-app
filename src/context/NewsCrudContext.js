@@ -6,7 +6,6 @@ const newsCrudContext = createContext();
 export function NewsCrudContextProvider({ children }) {
   const API_URL = "https://newsapi.org/v2/everything?";
   const pageSize = process.env.REACT_APP_PAGE_SIZE;
-  // const pageNo = process.env.REACT_APP_PAGE_NO;
   const apiKey = process.env.REACT_APP_NEWS_API_KEY;
 
   const [keyWord, setKeyWord] = useState("Today's News");
@@ -22,9 +21,7 @@ export function NewsCrudContextProvider({ children }) {
       const response = await axios.get(
         `${API_URL}q=${search}&pageSize=${pageSize}&page=${pageNo}&apiKey=${apiKey}`
       );
-      console.log(response);
       const data = await response.data.articles;
-      console.log(data);
       setNews(data);
     } catch (error) {
       console.error(error);
@@ -35,16 +32,13 @@ export function NewsCrudContextProvider({ children }) {
 
   const loadMoreNews = async (newPage) => {
     newPage++;
-    console.log(newPage);
     setPageNo(newPage);
 
     try {
       const response = await axios.get(
         `${API_URL}q=${keyWord}&pageSize=${pageSize}&page=${newPage}&apiKey=${apiKey}`
       );
-      console.log(response);
       const data = await response.data.articles;
-      console.log(data);
       setNews((prevNews) => [...prevNews, ...data]);
     } catch (error) {
       console.error(error);
@@ -60,7 +54,6 @@ export function NewsCrudContextProvider({ children }) {
   };
 
   const clearMyFav = () => {
-    console.log("delete ALL");
     localStorage.removeItem(LOCAL_STORAGE_KEY3, JSON.stringify(myFav));
     setMyFav([]);
   };

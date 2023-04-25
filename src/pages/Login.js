@@ -20,7 +20,6 @@ const Login = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(
     JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY1)) ?? false
-    // JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY2)) ?? ""
   );
 
   useEffect(() => {
@@ -53,7 +52,7 @@ const Login = () => {
       enqueueSnackbar("Success! Welcome to the Homepage.", {
         variant,
         anchorOrigin: position,
-        autoHideDuration: 1500,
+        autoHideDuration: 2000,
       });
     }
 
