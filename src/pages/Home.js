@@ -16,7 +16,8 @@ const Home = () => {
             lg={1}
             sx={{
               maxHeight: "10vh",
-              backgroundColor: "rgba(25, 25, 32, 0.4)",
+              py: 1,
+              backgroundColor: "rgba(25, 25, 32, 0.5)",
             }}
           >
             <Header></Header>
@@ -25,14 +26,16 @@ const Home = () => {
             <Grid container direction="row" sx={{ height: "100vh" }}>
               <Grid
                 item
+                xs={3.5}
+                md={3}
                 lg={2.5}
                 sx={{
-                  backgroundColor: "rgba(25, 25, 32, 0.4)",
+                  backgroundColor: "rgba(25, 25, 32, 0.5)",
                 }}
               >
                 <MyFavPanel sx={{ overflowY: "scroll" }}></MyFavPanel>
               </Grid>
-              <Grid item lg={9.5}>
+              <Grid item xs={8.5} md={9} lg={9.5}>
                 <DisplayResults></DisplayResults>
               </Grid>
             </Grid>

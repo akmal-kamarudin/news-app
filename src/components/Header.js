@@ -49,11 +49,11 @@ const Header = () => {
       <Grid
         container
         spacing={0}
-        direction="row"
-        alignItems="center"
-        justifyContent="space-between"
+        direction={{ xs: "column", sm: "row" }}
+        alignItems={{ xs: "center", sm: "center" }}
+        justifyContent={{ xs: "space-evenly", sm: "space-between" }}
       >
-        <Grid sx={{ m: 1 }}>
+        <Grid sx={{ ml: 2 }}>
           <Typography
             variant="h4"
             color={deepOrange[500]}
@@ -71,7 +71,7 @@ const Header = () => {
               size="small"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              sx={{ mr: 1, width: "32ch" }}
+              sx={{ mr: 1, width: { xs: "auto", sm: "auto", md: "auto", lg: "50ch" } }}
             />
             <Button
               variant="contained"
@@ -87,7 +87,7 @@ const Header = () => {
             </Button>
           </form>
         </Grid>
-        <Grid sx={{ m: 1 }}>
+        <Grid sx={{ mr: 2 }}>
           <Chip icon={<FaceIcon />} label={userName} color="secondary" />
           <Button
             variant="contained"
