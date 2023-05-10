@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNewsCrud } from "../context/NewsCrudContext";
-import { red, purple } from "@mui/material/colors";
+import { red, purple, grey } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import {
   Card,
@@ -16,13 +16,29 @@ import {
 } from "@mui/material";
 
 const NewsItem = (props) => {
-  const { updateMyFav } = useNewsCrud();
+  const { myFav, updateMyFav, removeMyFav } = useNewsCrud();
   const [hover, setHover] = useState(false);
   const { news } = props;
 
-  // Fav button
-  const favHandler = (myFavTitle) => {
-    updateMyFav(myFavTitle);
+  // Fav Like button
+  const favLikeHandler = (favItem) => {
+    updateMyFav(favItem);
+  };
+
+  // Fav Dislike button
+  const favDislikeHandler = (favItem) => {
+    removeMyFav(favItem);
+  };
+
+  // Check Like status
+  const likeStatus = (title) => {
+    const existingNews = myFav.find((favItem) => favItem.title === title);
+
+    if (existingNews) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   return (
@@ -92,12 +108,15 @@ const NewsItem = (props) => {
           )}
         </CardActionArea>
         <CardActions disableSpacing>
-          <IconButton
-            aria-label="add to favorites"
-            onClick={() => favHandler(news.title)}
-          >
-            <FavoriteIcon style={{ color: red[700] }} />
-          </IconButton>
+          {likeStatus(news.title) ? (
+            <IconButton onClick={() => favDislikeHandler(news)}>
+              <FavoriteIcon style={{ color: red[700] }} />
+            </IconButton>
+          ) : (
+            <IconButton onClick={() => favLikeHandler(news)}>
+              <FavoriteIcon style={{ color: grey[500] }} />
+            </IconButton>
+          )}
         </CardActions>
       </Card>
     </>

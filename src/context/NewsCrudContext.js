@@ -47,13 +47,23 @@ export function NewsCrudContextProvider({ children }) {
     }
   };
 
-  // Store Fav Items
-  const updateMyFav = (title) => {
-    const favNews = news.filter((news) => {
-      return news.title === title;
+  // Update Fav Items
+  const updateMyFav = (favItem) => {
+    const favNews = {
+      id: crypto.randomUUID(),
+      ...favItem,
+    };
+
+    setMyFav((prevItem) => [...prevItem, favNews]);
+  };
+
+  // Delete Fav Items
+  const removeMyFav = (favItem) => {
+    const newFavList = myFav.filter((item) => {
+      return item.title !== favItem.title;
     });
 
-    setMyFav((prevFav) => [...prevFav, ...favNews]);
+    setMyFav(newFavList);
   };
 
   // Clear Fav Items
@@ -74,6 +84,7 @@ export function NewsCrudContextProvider({ children }) {
     handleSetKeyword,
     loadMoreNews,
     updateMyFav,
+    removeMyFav,
     clearMyFav,
   };
 

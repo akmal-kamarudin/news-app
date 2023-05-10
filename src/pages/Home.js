@@ -33,10 +33,10 @@ const Home = () => {
                   backgroundColor: "rgba(25, 25, 32, 0.5)",
                 }}
               >
-                <MyFavPanel sx={{ overflowY: "scroll" }}></MyFavPanel>
+                <MyFavPanel sx={{ overflowY: "scroll" }} />
               </Grid>
               <Grid item xs={8.5} md={9} lg={9.5}>
-                <DisplayResults></DisplayResults>
+                <DisplayResults />
               </Grid>
             </Grid>
           </Grid>

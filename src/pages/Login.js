@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { Grid, TextField, Button, Box, LinearProgress, Typography } from "@mui/material";
-import { deepPurple } from "@mui/material/colors";
+import { deepPurple, grey } from "@mui/material/colors";
 import { useSnackbar } from "notistack";
 
 const Login = () => {
@@ -126,7 +126,6 @@ const Login = () => {
             }}
           >
             <TextField
-              id="outlined-basic"
               label="Name"
               variant="outlined"
               type="text"
@@ -138,7 +137,6 @@ const Login = () => {
             />
 
             <TextField
-              id="outlined-basic"
               label="Password"
               variant="outlined"
               type="password"
@@ -165,6 +163,14 @@ const Login = () => {
             <Box sx={{ width: "36ch" }}>
               {isLoginInProgress ? <LinearProgress color="secondary" /> : <></>}
             </Box>
+            <Typography
+              variant="subtitle2"
+              color={grey[900]}
+              sx={{ fontStyle: "italic", fontWeight: "bold", textAlign: "center", mt: 2 }}
+            >
+              *Please login using the following details: - <br />
+              Username: John , Password: 1234
+            </Typography>
           </Grid>
         </form>
       </Grid>
