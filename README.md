@@ -4,6 +4,8 @@ This project only has one user for login purpose. Here's the login details: \
 Username: John \
 Password: 1234
 
+Feel free to contribute
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
