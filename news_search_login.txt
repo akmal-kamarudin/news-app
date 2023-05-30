@@ -1,4 +1,0 @@
-Login details
-
-Username: John
-Password: 1234
